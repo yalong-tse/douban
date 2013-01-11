@@ -1,0 +1,27 @@
+<h1>Listing dailyposts</h1>
+
+<table>
+  <tr>
+    <th>Dailynote</th>
+    <th>Content</th>
+    <th>Image</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dailyposts.each do |dailypost| %>
+  <tr>
+    <td><%= dailypost.dailynote_id %></td>
+    <td><%= dailypost.content %></td>
+    <td><%= dailypost.image %></td>
+    <td><%= link_to 'Show', dailypost %></td>
+    <td><%= link_to 'Edit', edit_dailypost_path(dailypost) %></td>
+    <td><%= link_to 'Destroy', dailypost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dailypost', new_dailypost_path %>

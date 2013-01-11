@@ -1,0 +1,3 @@
+class Photobook < ActiveRecord::Base
+  attr_accessible :description, :name, :preface
+end

@@ -1,0 +1,27 @@
+<h1>Listing photobooks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Preface</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @photobooks.each do |photobook| %>
+  <tr>
+    <td><%= photobook.name %></td>
+    <td><%= photobook.description %></td>
+    <td><%= photobook.preface %></td>
+    <td><%= link_to 'Show', photobook %></td>
+    <td><%= link_to 'Edit', edit_photobook_path(photobook) %></td>
+    <td><%= link_to 'Destroy', photobook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Photobook', new_photobook_path %>

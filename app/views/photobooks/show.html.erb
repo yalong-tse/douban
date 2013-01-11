@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @photobook.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @photobook.description %>
+</p>
+
+<p>
+  <b>Preface:</b>
+  <%= @photobook.preface %>
+</p>
+
+
+<%= link_to 'Edit', edit_photobook_path(@photobook) %> |
+<%= link_to 'Back', photobooks_path %>

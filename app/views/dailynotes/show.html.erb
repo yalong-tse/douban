@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @dailynote.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @dailynote.content %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @dailynote.image %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @dailynote.link %>
+</p>
+
+
+<%= link_to 'Edit', edit_dailynote_path(@dailynote) %> |
+<%= link_to 'Back', dailynotes_path %>

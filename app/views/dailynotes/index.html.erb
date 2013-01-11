@@ -1,0 +1,29 @@
+<h1>Listing dailynotes</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Image</th>
+    <th>Link</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dailynotes.each do |dailynote| %>
+  <tr>
+    <td><%= dailynote.title %></td>
+    <td><%= dailynote.content %></td>
+    <td><%= dailynote.image %></td>
+    <td><%= dailynote.link %></td>
+    <td><%= link_to 'Show', dailynote %></td>
+    <td><%= link_to 'Edit', edit_dailynote_path(dailynote) %></td>
+    <td><%= link_to 'Destroy', dailynote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dailynote', new_dailynote_path %>

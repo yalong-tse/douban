@@ -1,0 +1,11 @@
+class CreateDailyposts < ActiveRecord::Migration
+  def change
+    create_table :dailyposts do |t|
+      t.integer :dailynote_id
+      t.text :content
+      t.string :image
+
+      t.timestamps
+    end
+  end
+end
