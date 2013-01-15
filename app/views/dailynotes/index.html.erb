@@ -1,29 +1,44 @@
-<h1>Listing dailynotes</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Image</th>
-    <th>Link</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @dailynotes.each do |dailynote| %>
-  <tr>
-    <td><%= dailynote.title %></td>
-    <td><%= dailynote.content %></td>
-    <td><%= dailynote.image %></td>
-    <td><%= dailynote.link %></td>
-    <td><%= link_to 'Show', dailynote %></td>
-    <td><%= link_to 'Edit', edit_dailynote_path(dailynote) %></td>
-    <td><%= link_to 'Destroy', dailynote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Dailynote -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%= model_class.human_attribute_name(:image) %></th>
+      <th><%= model_class.human_attribute_name(:link) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dailynotes.each do |dailynote| %>
+      <tr>
+        <td><%= link_to dailynote.id, dailynote_path(dailynote) %></td>
+        <td><%= dailynote.title %></td>
+        <td><%= dailynote.content %></td>
+        <td><%= dailynote.image %></td>
+        <td><%= dailynote.link %></td>
+        <td><%= dailynote.user_id %></td>
+        <td><%=l dailynote.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_dailynote_path(dailynote), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      dailynote_path(dailynote),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Dailynote', new_dailynote_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_dailynote_path,
+            :class => 'btn btn-primary' %>

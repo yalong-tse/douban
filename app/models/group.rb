@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Group < ActiveRecord::Base
   attr_accessible :icon, :introduction, :label, :name
   has_many :user_groups

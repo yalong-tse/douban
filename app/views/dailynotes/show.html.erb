@@ -1,25 +1,29 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Dailynote -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Title:</b>
-  <%= @dailynote.title %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @dailynote.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
+  <dd><%= @dailynote.content %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
+  <dd><%= @dailynote.image %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:link) %>:</strong></dt>
+  <dd><%= @dailynote.link %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @dailynote.user_id %></dd>
+</dl>
 
-<p>
-  <b>Content:</b>
-  <%= @dailynote.content %>
-</p>
-
-<p>
-  <b>Image:</b>
-  <%= @dailynote.image %>
-</p>
-
-<p>
-  <b>Link:</b>
-  <%= @dailynote.link %>
-</p>
-
-
-<%= link_to 'Edit', edit_dailynote_path(@dailynote) %> |
-<%= link_to 'Back', dailynotes_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              dailynotes_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_dailynote_path(@dailynote), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              dailynote_path(@dailynote),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

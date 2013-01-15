@@ -1,0 +1,16 @@
+<div class="container">
+  <%= form_tag({:action=>'login'},{:class=>'form-signin'}) do %>
+    <h2 class="form-signin-heading">大柳树讨论组</h2>
+    <%= text_field 'user','name',{:class=>'input-block-level',:placeholder=>"用户名",:size=>'1'} %>
+    <%= password_field 'user','password',{:class=>"input-block-level",:placeholder=>"密码",:size=>'1'} %>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me">记住我
+        </label>
+        <% if flash[:notice] %>
+          <p class="lead"> <%= flash[:notice] %> </p>
+        <% end %>
+        <%= submit_tag "登录",:class=>"btn btn-large btn-primary"%>
+      </form>
+  <% end %>
+</div> <!-- /container -->
+

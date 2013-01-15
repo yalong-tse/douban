@@ -1,13 +1,30 @@
+#encoding: utf-8
 class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+    @group_id = params[:group_id]
+    logger.info "the group id is : #{@group_id}"
+    if @group_id 
+      @topics = Topic.where(:group_id => params[:group_id])
+    else
+      @topics = Topic.all
+    end
+    #logger.info "the topics has #{@topics}"
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @topics }
     end
+  end
+
+  # 根据group_id 获得改组下的所有话题
+  def group
+    @topics = Topic.find_by_group_id(params[:group_id])
+	respond_to do |format|
+	  format.html  # grouptopic.html.erb
+	  format.json {render json: @topics}
+	end
   end
 
   # GET /topics/1
@@ -24,7 +41,11 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
+    @group_id = params[:group_id]
     @topic = Topic.new
+    unless @group_id.nil?
+      @topic.group_id = @group_id
+    end
 
     respond_to do |format|
       format.html # new.html.erb

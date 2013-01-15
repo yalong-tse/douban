@@ -1,29 +1,26 @@
-<%= form_for(@dailypost) do |f| %>
-  <% if @dailypost.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dailypost.errors.count, "error") %> prohibited this dailypost from being saved:</h2>
-
-      <ul>
-      <% @dailypost.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @dailypost, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :dailynote_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :dailynote_id, :class => 'number_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :content, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :content, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :image, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :image, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :dailynote_id %><br />
-    <%= f.number_field :dailynote_id %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br />
-    <%= f.text_field :image %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                dailyposts_path, :class => 'btn' %>
   </div>
 <% end %>

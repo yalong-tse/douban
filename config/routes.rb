@@ -1,4 +1,8 @@
 Douban::Application.routes.draw do
+  post "welcome/login"
+  get "welcome/index"
+  get "welcome/logout"
+
   resources :dailyposts
 
 
@@ -8,10 +12,14 @@ Douban::Application.routes.draw do
   resources :posts
 
 
-  resources :topics
+  resources :topics do
+    resources :posts
+  end
 
 
-  resources :groups
+  resources :groups do
+    resources :topics
+  end
 
 
   resources :photobooks
@@ -69,7 +77,7 @@ Douban::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

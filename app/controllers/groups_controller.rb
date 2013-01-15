@@ -1,9 +1,11 @@
+#encoding: utf-8
 class GroupsController < ApplicationController
+  layout "index"
   # GET /groups
   # GET /groups.json
   def index
     @groups = Group.all
-
+    @title = "讨论组"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @groups }
