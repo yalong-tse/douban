@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>大柳树讨论组</title>
+  <%= stylesheet_link_tag "main", :media => "all" %>
+  <%= stylesheet_link_tag "douban", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="header_container">
+    <div class="container">
+      <div class="logo"> <a href=""><img src=""></a></div>
+      <div class="nav">
+        <ul>
+          <li><a href="#">首页</a></li>
+          <li><a href="/groups" onclick="li_active(this)">讨论小组</a></li>
+          <li><a href="/dailynotes">日记</a></li>
+          <li><a href="#contact">相册</a></li>
+          <li><a href="#contact">阅读</a></li>
+          <li><a href="#contact">电影</a></li>
+          <li><a href="/users">用户</a></li>
+        </ul>
+      </div><!--end nav class div -->
+      <div class="pro">
+        <ul class="reg_link">
+          <li><%=session[:user_name] || "欢迎您#{session[:user_name]}"%></li>
+          <li><a href="">注册</a></li>
+          <li><a href="">登录</a></li>
+          <li><a href="/welcome/logout">退出</a></li>
+        </ul>
+      </div>
+    </div>
+  </div><!-- end of header-container -->
+
+  <div class="container">
+    <div class="sidebar">
+    </div>
+  </div><!-- end of container -->
+
+  <div class="container">
+      <%= yield %>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p style="text-align: center;">&copy; 北京大柳树 2012</p>
+  </footer>
+
+</div>
+</body>
+</html>
+<script language="javascript">
+  function li_active(tag)
+  {
+     //alert("===========");
+     $(tag).parent('li').attr("class","active");
+  }
+
+  // 这是页面默认加载的方法
+  $().ready(function(){
+
+  })
+</script>

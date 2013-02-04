@@ -1,38 +1,24 @@
 <%- model_class = Group -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => @title %></h1>
+<div class="grid-16-8 clearfix">
+  <div class="article">
+   <div class="group-list">
+     <% @groups.each do |group| %>
+    <div class="result">
+      <div class="pic">
+      </div>
+      <div class="content">
+        <div class="group-title">
+          <h3><%= link_to group.name, group_topics_path(group) %></h3>
+        </div>
+        <div class="info"></div>
+        <div><p><%= sanitize group.introduction %></p></div>
+      </div>
+    </div>
+     <% end %>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:introduction) %></th>
-      <th><%= model_class.human_attribute_name(:icon) %></th>
-      <th><%= model_class.human_attribute_name(:label) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= link_to group.name, group_topics_path(group) %></td>
-        <td><%= sanitize group.introduction %></td>
-        <td><%= group.icon %></td>
-        <td><%= group.label %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("修改")),
-                      edit_group_path(group), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("删除")),
-                      group_path(group),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</div>
+</div>
 
-<%= link_to t('.new', :default => t("新建")),
+<%= link_to t('.new', :default => t("新建讨论组")),
             new_group_path,
             :class => 'btn btn-primary' %>

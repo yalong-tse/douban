@@ -1,38 +1,29 @@
 <%- model_class = Topic -%>
 <div class="page-header">
-  <h1>话题</h1>
+  <h1><%= title = @group && @group.name %>讨论组---话题</h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>话题</th>
-      <th>图标</th>
-      <th>链接</th>
-      <th>描述</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @topics.each do |topic| %>
-      <tr>
-        <td><%= link_to topic.title, topic_path(topic)%></td>
-        <td><%= topic.image %></td>
-        <td><%= topic.link %></td>
-        <td><%= topic.description %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_topic_path(topic), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+<div class="main box" style="margin-bottom:20px;">
+<% @topics.each do |topic| %>
+<div class="topic">
+  <div class="topic_header">
+    <h1><%= link_to topic.title,topic_path(topic) %></h1>
+  </div>
+  <div class="topic_content">
+    <p><%= sanitize topic.description %></p>
+  </div>
+  <div class="topic_info">
+   <div class="topic_tool">
+          <%= link_to t('.edit', :default => t("编辑")),
+                      edit_topic_path(topic) %>
+          <%= link_to t('.destroy', :default => t("删除")),
                       topic_path(topic),
                       :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
+   </div>
+  </div>
+</div>
+<% end %>
+</div>
 
 <%= link_to t('.new', :default => t("新建话题")),
-            new_group_topic_path(@group_id),
-            :class => 'btn btn-primary' %>
+            new_group_topic_path(@group_id) %>

@@ -1,9 +1,9 @@
 class DailynotesController < ApplicationController
+  layout "main"
   # GET /dailynotes
   # GET /dailynotes.json
   def index
     @dailynotes = Dailynote.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @dailynotes }
@@ -41,7 +41,6 @@ class DailynotesController < ApplicationController
   # POST /dailynotes.json
   def create
     @dailynote = Dailynote.new(params[:dailynote])
-
     respond_to do |format|
       if @dailynote.save
         format.html { redirect_to @dailynote, notice: 'Dailynote was successfully created.' }

@@ -18,3 +18,6 @@ Group.create(name:'大柳树', introduction:%{<p>这是一群来自大柳树的�
 Group.create(name:'电影爱好者',introduction:%{<p>我们有着共同的爱好，那就是电影</p>},label:'电影')
 Group.create(name:'技术男',introduction:%{<p>我们都是技术男</p>},label:'技术男')
 
+Appsetting.delete_all
+Appsetting.create(name:'attachment_savepath',type:"attachment",value:"d:/gzdtupload")
+Appsetting.create(name:'appname',type:"appname",value:"")

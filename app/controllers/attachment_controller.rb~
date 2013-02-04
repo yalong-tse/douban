@@ -1,0 +1,6 @@
+class AttachmentController < ApplicationController
+  def download
+    @attachment_id = params[:attachment]
+    @attchemnt = Attachment.find(@attachment_id)
+  end
+end

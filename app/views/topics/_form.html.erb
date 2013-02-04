@@ -26,8 +26,8 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                topics_path, :class => 'btn' %>
+    <%= f.submit '创建', :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("返回")),
+                group_topics_path(@topic.group_id), :class => 'btn' %>
   </div>
 <% end %>

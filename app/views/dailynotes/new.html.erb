@@ -1,6 +1,22 @@
 <%- model_class = Dailynote -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
-                                 :default => "New #{model_class.model_name.human}") %></h1>
+<div class="main box" style="margin-bottom:20px;">
+  <div class="topic">
+    <div class="topic_header">
+      <h1><%= puts "新增日记" %></h1>
+    </div>
+    <div class="typecho-post-area">
+      <%= form_for @dailynote, :multipart=>true do |f| %>
+        <p>标题：</p>
+        <%= f.text_field :title, {:class=> 'text title', :style=> "width:540px;"} %>
+        <p>内容：</p>
+        <%= f.text_area :content, {:class=>"text title", :style=>"width:540px;height:80px"} %>
+        <p>图片：</p>
+        <%= f.file_field :image,{:class=>"file_field"} %>
+        <div class="comment-submit" style="margin-top:10px;">
+          <%= submit_tag "发布",:class=>"submit" %> &nbsp;&nbsp;
+          <%= link_to "返回", dailynotes_path(@dailynote),:class=>"submit"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<%= render :partial => 'form' %>

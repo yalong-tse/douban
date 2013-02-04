@@ -1,0 +1,31 @@
+<%- model_class = Dailynote -%>
+<div class="page-header">
+  <h1><%= %></h1>
+</div>
+<table class="main box" style="margin-bottom:20px;">
+  <% @dailynotes.each do |note| %>
+  <div class="topic">
+    <div class="topic_header">
+      <h1><%=link_to note.title,dailynote_path(note)%></h1>
+    </div>
+    <div class="topic_content">
+      <p><%= sanitize note.content %></p>
+    </div>
+    <div class="topic_info">
+      <div class="topic_tool">
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_dailynote_path(dailynote), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      dailynote_path(dailynote),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</table>
+
+<%= link_to t('.new', :default => t("新增日记")),
+            new_dailynote_path,
+            :class => 'btn btn-primary' %>

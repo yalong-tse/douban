@@ -1,0 +1,57 @@
+<%- model_class = Topic -%>
+<div class="page-header">
+ <p class="lead">讨论组：<%= @topic.group && @topic.group.name %></p>
+</div>
+<div class="main box" style="margin-bottom:20px;">
+<div class="topic">
+  <div class="topic_header">
+    <h1><%= @topic.title %></h1>
+  </div>
+  <div class="topic_content">
+    <p><%= sanitize @topic.description %></p>
+  </div>
+  <div class="topic_content">
+    <p><%= image_tag @topic.image,{:style=>"width:540px;height:350px"} %></p>
+  </div>
+  <div class="topic_info">
+   <div class="topic_tool">
+    <a href="#">顶贴</a> <a href="#">转发</a>
+   </div>
+  </div>
+</div>
+</div>
+
+<div class="main radius" style="margin-top:20px;">
+  <div class="reply_list" style="padding:10px">
+    <div style="padding:5px 0px; margin-bottom:5px;text-align:center;">
+      已有<%=@topic.posts.count%> 条回帖
+    </div>
+    <ol class="comment-list">
+       <% @topic.posts.each do |post| %>
+      <div class="comment-item">
+         <div class="content">
+           <p><span class="author"><%= post.user && post.user.name%>:</span>  <%=sanitize post.content %></p>
+         </div>
+      </div>
+       <% end %>
+    </ol>
+  </div>
+</div>
+<div class="main radius reply_box" style="margin-top:20px">
+  <div style="color:#A8B1BA;padding:10px;">
+     <span> 您的回帖 </span>
+   </div>
+   <div class="respond" style="padding:0 10px 10px 10px">
+    <%= form_tag({:controller =>"posts",:action => "create"}, :html =>{ :class => 'form-horizontal'}) do  %>
+      <%= text_field 'post', "topic_id", {:type=>'hidden',:value=>"#{@topic.id}"}%>
+    <div class="controls">
+      <%= text_area :post,"content", {:class=>"textarea",:style=>"width:540px;height:80px" } %>
+    </div>
+    <div class="comment-submit" style="margin-top:10px;">
+      <%= submit_tag "提交", :class=>"submit"%>
+    </div>
+   <% end %>
+    </div>
+
+   </div>
+</div>

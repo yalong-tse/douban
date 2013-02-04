@@ -1,6 +1,6 @@
 #encoding: utf-8
 class GroupsController < ApplicationController
-  layout "index"
+  layout "main"
   # GET /groups
   # GET /groups.json
   def index

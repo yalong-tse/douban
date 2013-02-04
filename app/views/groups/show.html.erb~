@@ -1,0 +1,32 @@
+<%- model_class = Group -%>
+<div class="main box" style="margin-bottom:20px;">
+<div class="topic">
+  <div class="topic_header">
+    <h1><%="新建的讨论组：#{@group.name}" %></h1>
+  </div>
+  <div class="topic_content">
+    <p>小组名：<%= sanitize @group.name %></p>
+  </div>
+  <div class="topic_content">
+    <p>小组简介：<%= sanitize @group.introduction %></p>
+  </div>
+  <div class="topic_content">
+    <p>小组标签：<%= sanitize @group.label %></p>
+  </div>
+  <div class="topic_content">
+    <p>小组图标：<%=image_tag @group.icon,{:style=>"width:40px;height:30px;"} %></p>
+  </div>
+</div>
+</div>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              groups_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_group_path(@group), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              group_path(@group),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115064712) do
+ActiveRecord::Schema.define(:version => 20130118082351) do
+
+  create_table "appsettings", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.string   "settingtype"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "attachments", :force => true do |t|
+    t.string   "filename"
+    t.string   "savepath"
+    t.string   "savefilename"
+    t.string   "filetype"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "dailynotes", :force => true do |t|
     t.string   "title"
@@ -55,16 +72,19 @@ ActiveRecord::Schema.define(:version => 20130115064712) do
     t.string   "image"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "topics", :force => true do |t|
     t.string   "title"
-    t.string   "image"
     t.string   "link"
     t.text     "description"
     t.integer  "group_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
+    t.integer  "attachment_id"
+    t.string   "image"
   end
 
   create_table "user_groups", :force => true do |t|

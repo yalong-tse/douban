@@ -1,6 +1,6 @@
 #encoding: utf-8
 class UsersController < ApplicationController
-  layout "index"
+  layout "main"
   # GET /users
   # GET /users.json
   def index

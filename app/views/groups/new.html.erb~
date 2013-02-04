@@ -1,0 +1,24 @@
+<%- model_class = Group -%>
+<div class="main box" style="margin-bottom:20px;">
+  <div class="topic">
+    <div class="topic_header">
+      <h1>新建讨论组</h1>
+    </div>
+    <div class="typecho-post-area">
+      <%= form_for @group,:multipart=>true do |f| %>
+        <p>小组名称：</p>
+        <%= f.text_field :name, {:class => 'text title',:style=>"width:540px;"} %>
+        <p>小组介绍：</p>
+        <%= f.text_area :introduction, {:class => 'title',:style=>"width:540px;height:80px"} %>
+        <p>小组标签:</p>
+        <%= f.text_field :label,${:class=>"text label",:style=>"width:540px;"} %>
+        <p>图片:</p>
+        <%= f.file_field :icon, {:class=>"file_field"} %>
+       <div class="comment-submit" style="margin-top:10px;">
+         <%= submit_tag "提交申请", :class=>"submit"%>&nbsp;&nbsp;
+         <%= link_to "返回",new_group_path(@group),:class=>"sumbit"%>
+       </div>
+      <% end %>
+    </div><!-- end of  typecho-post-area -->
+  </div><!-- div topic -->
+</div>

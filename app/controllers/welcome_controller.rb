@@ -9,6 +9,7 @@ class WelcomeController < ApplicationController
       @user = User.authorize(@username,@password)
       if @user
         session[:user_id] = @user.id
+        session[:user_name] = @user.name
         flash[:notice] = "用户已经成功登录"
         redirect_to groups_path
       else
@@ -31,6 +32,7 @@ class WelcomeController < ApplicationController
   # 用户登出的action
   def logout
      session[:user_id] = nil
+     session[:user_name] = nil
 	 flash[:notice] = "用户已经退出"
 	 redirect_to :action=>:index
   end

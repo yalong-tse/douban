@@ -40,11 +40,21 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    @topic_id = params[:post][:topic_id]
+	logger.info "the topic id is #{@topic_id}"
+	@topic = Topic.find(@topic_id)
     @post = Post.new(params[:post])
+
+	if @topic_id
+	  @post.topic_id = @topic_id
+	end
+    if session[:user_id]
+      @post.user_id = session[:user_id]
+    end
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @topic, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
